@@ -1,6 +1,6 @@
 {
   "name": "boiler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Total site flat file caching.",
   "main": "refresh.php",
   "repository": {
