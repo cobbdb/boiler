@@ -1,7 +1,7 @@
 <?php
 
-include_once(dirname(__FILE__) . './node_modules/eta-php/H.php');
-include_once(dirname(__FILE__) . './node_modules/phplumbermill/log.php');
+include_once('node_modules/eta-php/H.php');
+include_once('node_modules/phplumbermill/log.php');
 error_reporting(E_ALL & ~E_NOTICE);
 
 class Boiler {
