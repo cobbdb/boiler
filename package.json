@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/cobbdb/boiler#readme",
   "dependencies": {
-    "eta-php": "^2.0.7"
+    "eta-php": "^2.0.7",
+    "phplumbermill": "^1.0.3"
   }
 }
