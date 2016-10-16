@@ -21,7 +21,7 @@ class log {
     public static function end($msg) {
         self::write($msg);
         self::$indent -= 1;
-        if (self::$indent == 0) {
+        if (self::$indent <= 0) {
             self::close();
         }
     }
