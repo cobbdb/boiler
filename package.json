@@ -1,6 +1,6 @@
 {
   "name": "phpboiler",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Total site flat file caching.",
   "main": "refresh.php",
   "repository": {
