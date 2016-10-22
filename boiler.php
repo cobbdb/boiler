@@ -1,7 +1,7 @@
 <?php
 
 include_once("$MODULES/eta-php/H.php");
-include_once("$MODULES/phplumbermill/log.php");
+include_once("$MODULES/lumbermill/log.php");
 error_reporting(E_ALL & ~E_NOTICE);
 
 /**
@@ -16,7 +16,7 @@ error_reporting(E_ALL & ~E_NOTICE);
  *      ]
  *  ]);
  */
-public static function BOIL($base, $pages = []) {
+function BOIL($base, $pages = []) {
     $start = microtime(true);
 
     foreach ($pages as $dest => $page) {
