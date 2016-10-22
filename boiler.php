@@ -1,6 +1,6 @@
 <?php
 
-include_once("$MODULES/eta-php/H.php");
+include_once("$MODULES/eta/H.php");
 include_once("$MODULES/lumbermill/log.php");
 error_reporting(E_ALL & ~E_NOTICE);
 
