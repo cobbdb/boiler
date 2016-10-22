@@ -1,27 +1,13 @@
 {
   "name": "phpboiler",
   "version": "1.0.7",
-  "description": "Total site flat file caching.",
-  "main": "refresh.php",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cobbdb/boiler.git"
   },
-  "keywords": [
-    "cache",
-    "flat",
-    "file",
-    "fast",
-    "performance",
-    "php",
-    "caching"
-  ],
   "author": "Dan Cobb <cobbdb@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cobbdb/boiler/issues"
-  },
-  "homepage": "https://github.com/cobbdb/boiler#readme",
   "dependencies": {
     "eta-php": "^2.0.7",
     "phplumbermill": "^1.0.4"
