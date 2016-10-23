@@ -4,6 +4,8 @@ include_once("$MODULES/eta/H.php");
 include_once("$MODULES/lumbermill/log.php");
 error_reporting(E_ALL & ~E_NOTICE);
 
+H::setHome("$VIEWS/", true);
+
 /**
  * ## refresh(base, pages)
  * @param {string} base Path to site-wide base template.
@@ -16,15 +18,15 @@ error_reporting(E_ALL & ~E_NOTICE);
  *      ]
  *  ]);
  */
-function BOIL($base, $pages = []) {
+function BOILER($base, $pages = []) {
     $start = microtime(true);
 
     foreach ($pages as $dest => $page) {
         $model = $page['model'] ?: [];
         $view = $page['view'];
         $flatfile = H::render($base, [
-            'body' => H::render($view, $model, true) or die("Missing view $src!")
-        ], true) or die("Missing base template $base!");
+            'body' => H::render($view, $model) or die("Missing view $src!")
+        ]) or die("Missing base template $base!");
         $template = fopen($dest, 'w') or die("Unable to open file $dest!");
         fwrite($template, $flatfile);
         fclose($template);
