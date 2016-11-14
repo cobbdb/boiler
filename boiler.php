@@ -8,6 +8,19 @@ H::setHome("$VIEWS/", true);
 
 class Boiler {
     /**
+     * Create or open file at given path.
+     * @param {string} path
+     * @return {resource}
+     */
+    private static function fopenPlus($path) {
+        $dirname = dirname($path);
+        if (!is_dir($dirname)) {
+            mkdir($dirname, 0755, true);
+        }
+        return fopen($path, 'w');
+    }
+
+    /**
      * ## render(base, pages)
      * @param {string} base Path to site-wide base template.
      * @param {array<dest, array<view, [model]>>} pages
@@ -31,7 +44,7 @@ class Boiler {
             $flatfile = H::render($base, [
                 'body' => $content
             ]) or die("Missing base template $base!");
-            $template = fopen($dest, 'w') or die("Unable to open file $dest!");
+            $template = self::fopenPlus($dest);
             fwrite($template, $flatfile);
             fclose($template);
         }
