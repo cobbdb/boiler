@@ -2,24 +2,12 @@
 
 include_once("$MODULES/eta/H.php");
 include_once("$MODULES/lumbermill/log.php");
+include_once("$MODULES/fopen-plus/fopenp.php");
 
 // Set the default views directory.
 H::setHome("$VIEWS/", true);
 
 class Boiler {
-    /**
-     * Create or open file at given path.
-     * @param {string} path
-     * @return {resource}
-     */
-    private static function fopenPlus($path) {
-        $dirname = dirname($path);
-        if (!is_dir($dirname)) {
-            mkdir($dirname, 0755, true);
-        }
-        return fopen($path, 'w');
-    }
-
     /**
      * ## render(base, pages)
      * @param {string} base Path to site-wide base template.
@@ -35,20 +23,14 @@ class Boiler {
      * ```
      */
     public static function render($base, $pages = []) {
-        echo 'Beginning render...';
-        foreach ($pages as $dest => $page) {
-            $model = $page['model'] ?: [];
-            $view = $page['view'];
-            $content = H::render($view, $model) or die("Missing view $src!");
-            echo $content;
-            $flatfile = H::render($base, [
-                'body' => $content
-            ]) or die("Missing base template $base!");
-            $template = self::fopenPlus($dest);
+        echo '<h1>Beginning render...</h1>';
+        foreach ($pages as $dest => $model) {
+            $flatfile = H::render($base, $model) or die("Missing base template $base!");
+            $template = fopenp($dest);
             fwrite($template, $flatfile);
             fclose($template);
         }
-        echo '... done!';
+        echo '<h1>... render done!</h1>';
     }
 
     /**
@@ -65,18 +47,17 @@ class Boiler {
      * ```
      */
     public static function copy($patterns = []) {
-        echo 'Beginning copy...';
+        echo '<h1>Beginning copy...</h1>';
         foreach ($patterns as $dest => $src) {
             $files = glob($src);
             foreach ($files as $path) {
                 $filename = basename($path);
-                $fout = fopen("$dest$filename", 'w') or die("Unable to open file $dest$filename!");
+                $fout = fopenp("$dest$filename", 'w') or die("Unable to open file $dest$filename!");
                 $content = file_get_contents($path);
-                echo $content;
                 fwrite($fout, $content);
                 fclose($fout);
             }
         }
-        echo '... done!';
+        echo '<h1>... copy done!</h1>';
     }
 }
