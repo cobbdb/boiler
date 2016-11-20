@@ -25,7 +25,7 @@ class Boiler {
     public static function render($base, $pages = []) {
         echo '<h1>Beginning render...</h1>';
         foreach ($pages as $dest => $model) {
-            $flatfile = H::render($base, $model) or die("Missing base template $base!");
+            $flatfile = H::render($base, $model) or die("Missing template $base!");
             $template = fopenp($dest);
             fwrite($template, $flatfile);
             fclose($template);
